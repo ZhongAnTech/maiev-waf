@@ -47,9 +47,11 @@ v4.0
 ===
   * lua_scripts/config.lua文件是waf初始化配置文件，包括规则配置文件路径，日志配置。
 
-  * 日志配置支持kafka和syslog两种方式，不建议本地文件的方式，虽然也支持。如果采用syslog方式需要使用到[lua-resty-logger-socket](https://github.com/cloudflare/lua-resty-logger-socket.git)。
+    * 日志配置支持kafka和syslog两种方式，不建议本地文件的方式，虽然也支持。如果采用syslog方式需要使用到[lua-resty-logger-socket](https://github.com/cloudflare/lua-resty-logger-socket.git)。如果采用kafka方式需要使用到[lua-resty-kafka](https://github.com/doujiang24/lua-resty-kafka.git)。
 
-  * 规则配置，json格式，参考config.json。除非你对代码很理解，否则不建议手动编辑规则json文件。请使用众安开源的waf控制台项目进行规则创建，自动下发。
+    * 规则配置，waf启动时会自动加载config.lua里指定的config文件，json格式，参考sample_config.json。除非对仓库代码很理解，否则不建议手动编辑规则json文件。请使用众安开源的waf控制台项目进行规则创建，配合salt api自动下发config.json文件到waf目录。
+  > cp sample_config.json /usr/local/openresty/nginx/config.json
+  
   * OpenResty的nginx.conf配置文件http块增加一行引入waf.conf，参考如下：
 
     ```json

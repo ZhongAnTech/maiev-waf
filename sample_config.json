@@ -1,0 +1,265 @@
+{
+  "rules": {
+    "13": {
+      "match": [
+        {
+          "transforms": [],
+          "operator": "REG",
+          "value": "Xmhl",
+          "items": [
+            "RESPONSE_BODY"
+          ]
+        }
+      ],
+      "attack_tag": "BODY_LIMIT",
+      "id": "13",
+      "risk_level": 2,
+      "desc": "Response Body filter"
+    },
+    "12": {
+      "match": [
+        {
+          "transforms": [],
+          "operator": "gt",
+          "value": "64000",
+          "items": [
+            "ALL_ARGS_COMBINED_SIZE"
+          ]
+        }
+      ],
+      "attack_tag": "SIZE_LIMIT",
+      "id": "12",
+      "risk_level": 2,
+      "desc": "Total Argument too long, More than 64000"
+    },
+    "11": {
+      "match": [
+        {
+          "transforms": [
+            "count"
+          ],
+          "operator": "gt",
+          "value": "100",
+          "items": [
+            "ALL_ARGS"
+          ]
+        }
+      ],
+      "attack_tag": "SIZE_LIMIT",
+      "id": "11",
+      "risk_level": 2,
+      "desc": "Argument value too long, More than 100"
+    },
+    "10": {
+      "match": [
+        {
+          "transforms": [
+            "length"
+          ],
+          "operator": "gt",
+          "value": "100",
+          "items": [
+            "ALL_ARGS_NAMES"
+          ]
+        }
+      ],
+      "attack_tag": "SIZE_LIMIT",
+      "id": "10",
+      "risk_level": 2,
+      "desc": "Argument name too long, More than 100"
+    },
+    "9": {
+      "match": [
+        {
+          "transforms": [
+            "count"
+          ],
+          "operator": "gt",
+          "value": "100",
+          "items": [
+            "ALL_ARGS_NAMES"
+          ]
+        }
+      ],
+      "attack_tag": "SIZE_LIMIT",
+      "id": "9",
+      "risk_level": 2,
+      "desc": "Too many arguments in request, More than 100"
+    },
+    "8": {
+      "match": [
+        {
+          "transforms": [
+            "lowercase"
+          ],
+          "operator": "~",
+          "value": "W1xuXHJdKD86Y29udGVudC0odHlwZXxsZW5ndGgpfHNldC1jb29raWV8bG9jYXRpb24pOg==",
+          "items": [
+            "ALL_ARGS",
+            "ALL_ARGS_NAMES",
+            "COOKIES",
+            "COOKIES_NAMES"
+          ]
+        }
+      ],
+      "attack_tag": "RESPONSE-SPLITING",
+      "id": "8",
+      "risk_level": 1,
+      "desc": "HTTP Response Splitting Attack - 1"
+    },
+    "7": {
+      "match": [
+        {
+          "transforms": [
+            "html_decode",
+            "lowercase"
+          ],
+          "operator": "~",
+          "value": "KD86XCgoPzpcVyo/KD86b2JqZWN0Yyg/OmF0ZWdvcnl8bGFzcyl8aG9tZWRpcmVjdG9yeXxbZ3VdaWRudW1iZXJ8Y24pXGJcVyo/PXxbXlx3XHg4MC1ceEZGXSo/W1whXCZcfF1bXlx3XHg4MC1ceEZGXSo/XCgpfFwpW15cd1x4ODAtXHhGRl0qP1woW15cd1x4ODAtXHhGRl0qP1tcIVwmXHxdKQ==",
+          "items": [
+            "ALL_ARGS",
+            "ALL_ARGS_NAMES",
+            "COOKIES",
+            "COOKIES_NAMES"
+          ]
+        }
+      ],
+      "attack_tag": "LDAP-Injection",
+      "id": "7",
+      "risk_level": 1,
+      "desc": "LDAP Injection Attack"
+    },
+    "6": {
+      "match": [
+        {
+          "transforms": [
+            "uri_decode"
+          ],
+          "operator": "~",
+          "value": "QVJHUw==",
+          "items": [
+            "ALL_ARGS"
+          ]
+        }
+      ],
+      "attack_tag": "Anomaly-Request",
+      "id": "6",
+      "risk_level": 1,
+      "desc": "Meta-Character Anomaly Detection Alert - Repetative Non-Word Characters"
+    },
+    "5": {
+      "match": [
+        {
+          "transforms": [
+            "uri_decode",
+            "normalize_path"
+          ],
+          "operator": "CTN",
+          "value": "a",
+          "items": [
+            "ALL_ARGS",
+            "ALL_ARGS_NAMES",
+            "COOKIES",
+            "COOKIES_NAMES"
+          ]
+        }
+      ],
+      "attack_tag": "COMMAND_INJECTION,WASCTC/WASC-31,OWASP_TOP_10/A1,PCI/6.5.2",
+      "id": "5",
+      "risk_level": 3,
+      "desc": "System Command Injection - such as curl, wget and cc"
+    },
+    "2": {
+      "match": [
+        {
+          "transforms": [
+            "normalize_path"
+          ],
+          "operator": "ends_with",
+          "value": [
+            ".asa",
+            ".asax",
+            ".ascx"
+          ],
+          "items": [
+            "URI"
+          ]
+        }
+      ],
+      "attack_tag": "restricted_extensions",
+      "id": "1",
+      "risk_level": 2,
+      "desc": "不允许的文件后缀"
+    },
+    "1": {
+      "match": [
+        {
+          "transforms": [],
+          "operator": "!contain",
+          "value": "GET,HEAD,POST,OPTIONS,PUT",
+          "items": [
+            "METHOD"
+          ]
+        }
+      ],
+      "attack_tag": "FORBIDEN_METHOD",
+      "id": "1",
+      "risk_level": 2,
+      "desc": "请求了不允许的方法"
+    }
+  },
+  "datas": [
+    {
+      "data": {
+        "header_filters": [],
+        "body_filters": [
+          {
+            "mode": 1,
+            "action_vars": {
+              "pattern": "he",
+              "new": "ha"
+            },
+            "action": "GSUB",
+            "rule_id": "13"
+          }
+        ],
+        "filters": [
+          {
+            "mode": 1,
+            "action_vars": {
+              "redirect_url": "http://15071-tech-other-aegis-waf3.test.za-tech.net/t/intercept"
+            },
+            "action": "REDIRECT",
+            "rule_id": "5"
+          },
+          {
+            "mode": 1,
+            "action_vars": {
+              "redirect_url": "http://15071-tech-other-aegis-waf3.test.za-tech.net/t/intercept"
+            },
+            "action": "REDIRECT",
+            "rule_id": "6"
+          }
+        ],
+        "response_body_limit": 524288,
+        "response_body_mime_type": "text/plain,text/html,text/xml",
+        "response_body_access": 1,
+        "request_body_nofile_limit": 131072,
+        "request_body_limit": 131072,
+        "request_body_access": 1,
+        "upload_file_access": 1,
+        "waf_mode": 1,
+        "black_mode": -1,
+        "cc_mode": 1
+      },
+      "nid": "20d92060838a367fbc0fc072935f4f97",
+      "site_name": "localhost"
+    }
+  ],
+  "global_config": {
+  },
+  "version": "4.0",
+  "hash": "",
+  "code": 200,
+  "message": ""
+}
