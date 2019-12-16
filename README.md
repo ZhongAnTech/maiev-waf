@@ -33,7 +33,7 @@ v4.0
   * 3. 将包复制到openresty安装目录
   > cp -rf conf lua_scripts /usr/local/openresty/nginx/
   > 请确保nginx用户对该目录/usr/local/openresty/nginx/及子目录有读取权限。
-  * 4. 手动编译依赖的动态链接库（libinjection，cjson，ahocorasick）
+  * 4. 手动编译依赖的动态链接库（libinjection，cjson，ahocorasick, zlib）
   进入到对应子仓库目录下，执行Makefile编译对应操作系统平台的动态链接库文件。将编译成功后的so文件拷贝到/usr/local/openresty/lualib下。为方便大家使用，本项目已经预编译好了CentOS7下的所有动态库，放在lua_lib/el7luajit2下。将其拷贝/usr/local/openresty/lualib下即可。
   ```
   lua_lib/el7luajit2
