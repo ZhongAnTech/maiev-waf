@@ -5,7 +5,7 @@ local cfg_cache = ngx.shared.cfg
 
 local _M = {}
 
-if env == 'prod' then
+if _M then
    -- rule config.json path
    _M.cfg_backup_file = '/usr/local/oprensty/nginx/config.json'
    -- log type: syslog|kafka
