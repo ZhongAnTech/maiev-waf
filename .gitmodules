@@ -1,0 +1,9 @@
+[submodule "lua-aho-corasick"]
+	path = lua-aho-corasick
+	url = https://github.com/cloudflare/lua-aho-corasick
+[submodule "libinjection"]
+	path = libinjection
+	url = https://github.com/client9/libinjection
+[submodule "lua-cjson"]
+	path = lua-cjson
+	url = https://github.com/mpx/lua-cjson.git
