@@ -227,7 +227,7 @@
           {
             "mode": 1,
             "action_vars": {
-              "redirect_url": "http://15071-tech-other-aegis-waf3.test.za-tech.net/t/intercept"
+              "redirect_url": "http://your_redirect_url"
             },
             "action": "REDIRECT",
             "rule_id": "5"
@@ -235,7 +235,7 @@
           {
             "mode": 1,
             "action_vars": {
-              "redirect_url": "http://15071-tech-other-aegis-waf3.test.za-tech.net/t/intercept"
+              "redirect_url": "http://your_redirect_url"
             },
             "action": "REDIRECT",
             "rule_id": "6"
